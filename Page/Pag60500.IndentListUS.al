@@ -5,6 +5,7 @@ page 60500 "IndentListUS"
     UsageCategory = Lists;
     SourceTable = "Indent Table";
     CardPageId = 60501;
+    Caption = 'Indent List US';
 
     layout
     {
@@ -16,11 +17,11 @@ page 60500 "IndentListUS"
                 {
                     ApplicationArea = all;
                 }
-                field("Customer No"; Rec."Customer No")
+                field("Vendor No"; Rec."Vendor No")
                 {
                     ApplicationArea = all;
                 }
-                field("Customer Name"; Rec."Customer Name")
+                field("Vendor Name"; Rec."Vendor Name")
                 {
                     ApplicationArea = all;
                 }

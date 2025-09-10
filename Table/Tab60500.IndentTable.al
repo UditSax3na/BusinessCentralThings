@@ -21,12 +21,12 @@ table 60500 "Indent Table"
                     end;
             end;
         }
-        field(2; "Customer No"; Code[20])
+        field(2; "Vendor No"; Code[20])
         {
             DataClassification = ToBeClassified;
-            TableRelation = Customer;
+            TableRelation = Vendor;
         }
-        field(3; "Customer Name"; Text[100])
+        field(3; "Vendor Name"; Text[100])
         {
             DataClassification = ToBeClassified;
         }

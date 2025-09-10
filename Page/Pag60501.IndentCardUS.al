@@ -14,22 +14,24 @@ page 60501 IndentCardUS
                 field(No; Rec.No)
                 {
                     ApplicationArea = all; // 
+                    Editable = false;
                 }
-                field("Customer No"; Rec."Customer No")
+                field("Vendor No"; Rec."Vendor No")
                 {
                     ApplicationArea = all;
                     trigger OnValidate()
                     var
-                        Customer: Record Customer;
+                        Vendor: Record Vendor;
                     begin
-                        Customer.Reset();
-                        Customer.SetRange("No.", Rec."Customer No");
-                        if Customer.FindFirst() then begin
-                            Rec."Customer Name" := Customer.Name;
+                        Vendor.Reset();
+                        Vendor.SetRange("No.", Rec."Vendor No");
+                        if Vendor.FindFirst() then begin
+                            Rec."Vendor Name" := Vendor.Name;
+                            Rec."Order Date" := Today;
                         end;
                     end;
                 }
-                field("Customer Name"; Rec."Customer Name")
+                field("Vendor Name"; Rec."Vendor Name")
                 {
                     ApplicationArea = all;
                 }
@@ -40,6 +42,7 @@ page 60501 IndentCardUS
                 field("Status"; Rec."Status")
                 {
                     ApplicationArea = all;
+                    Editable = false;
                 }
             }
             part(Lines; IndentLineUS)
@@ -57,6 +60,46 @@ page 60501 IndentCardUS
     {
         area(Processing)
         {
+            action("ReOpen")
+            {
+                Image = ReOpen;
+                ApplicationArea = all;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Enabled = Rec.Status = Rec.Status::Release;
+                trigger OnAction()
+                begin
+                    if Rec.Status = Rec.Status::Release then begin
+                        Rec.Status := Rec.Status::Open;
+                        Rec.Modify();
+                    end;
+                end;
+            }
+            action("Release")
+            {
+                Image = ReleaseDoc;
+                ApplicationArea = all;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Enabled = Rec.Status = Rec.Status::Open;
+                trigger OnAction()
+                var
+                    Indentline: Record IndentLineUS;
+                begin
+                    Rec.TestField("Order Date");
+                    Rec.TestField("Vendor No");
+                    Rec.TestField("Vendor Name");
+                    Rec.Status := Rec.Status::Release;
+                    Indentline.SetRange("Document No", Rec.No);
+                    if Indentline.FindSet() then begin
+                        Indentline.TestField("Item No");
+                        Indentline.TestField("Item Quantity");
+                        Indentline.TestField("Item Unit Price");
+                    end;
+                end;
+            }
             action("Create Purchase Quote")
             {
                 Image = Create;
@@ -66,64 +109,74 @@ page 60501 IndentCardUS
                 PromotedIsBig = true;
                 Enabled = Rec.Status = Rec.Status::Release;
 
-                /*
                 trigger OnAction()
                 var
                     PurchaseOrder: Record "Purchase Header";
+                    PurchaseLines: Record "Purchase Line";
                     IndentLines: Record IndentLineUS;
+                    noseries: Codeunit "No. Series";
+                    purchpaysetup: Record "Purchases & Payables Setup";
                 begin
-                    // Filter Indent Lines for this Indent
-                    IndentLines.SetRange("Document No", Rec.No);
-
-                    if not IndentLines.FindFirst() then begin
-                        Message('No Indent Lines found for %1', Rec.No);
-                        exit;
-                    end;
-
-                    // Initialize Purchase Header
-                    PurchaseOrder.Reset();
-                    PurchaseOrder.Init();
-                    if IndentLines.FindFirst() then begin
-                        PurchaseOrder."Document Type" := PurchaseOrder."Document Type"::Quote;
-                        PurchaseOrder."Order Date" := Rec."Order Date";
-                        PurchaseOrder."Buy-from Vendor No." := IndentLines."Vendor No 1";
-                        PurchaseOrder.Validate("Buy-from Vendor No.");
-                        // Insert only once
-                        PurchaseOrder.Insert(true);
-                    end;
-
-                    // Now open the Purchase Quote page
-                    Commit(); // Make sure it's committed before running the page
-                    Page.RunModal(Page::"Purchase Quote", PurchaseOrder);
-                end;
-                */
-
-                // old code
-
-                trigger OnAction()
-                var
-                    PurchaseOrder: Record "Purchase Header";
-                    IndentLines: Record IndentLineUS;
-                begin
-                    PurchaseOrder.Reset();
+                    // PurchaseOrder.Reset();
+                    purchpaysetup.Get();
                     PurchaseOrder.Init();
                     PurchaseOrder."Document Type" := PurchaseOrder."Document Type"::Quote;
+                    PurchaseOrder."No." := noseries.GetNextNo(purchpaysetup."Quote Nos.");
+
+                    // PurchaseOrder.Validate("No.");
+                    PurchaseOrder.Insert();
                     PurchaseOrder."Order Date" := Rec."Order Date";
+
+                    IndentLines.Reset();
                     IndentLines.SetRange("Document No", Rec.No);
+                    // if IndentLines.FindFirst() then;
+                    // PurchaseLines.Reset();
+                    PurchaseLines.Init();
+
                     if IndentLines.FindFirst() then begin
                         PurchaseOrder."Buy-from Vendor No." := IndentLines."Vendor No 1";
                         PurchaseOrder.Validate("Buy-from Vendor No.");
+                        // adding purchase lines to the purchase quote
+                        PurchaseLines."Document Type" := PurchaseOrder."Document Type";
+                        PurchaseLines."Document No." := PurchaseOrder."No.";
+                        PurchaseLines."Line No." := GetLastNo(PurchaseOrder);
+                        PurchaseLines.Type := PurchaseLines.Type::Item;
+                        PurchaseLines.Quantity := IndentLines."Item Quantity";
+
+                        PurchaseLines.Insert();
+                        PurchaseLines."Buy-from Vendor No." := IndentLines."Vendor No 1";
+                        PurchaseLines."No." := IndentLines."Item No";
+                        PurchaseLines.Modify();
+                        // PurchaseOrder."Buy-from Vendor No.":= 
                         PurchaseOrder.Modify();
+
+                        Message('Purchase quote created Successfully %1', PurchaseOrder."No.");
                     end;
-                    PurchaseOrder.Insert();
-                    // if PurchaseOrder.Insert() then begin
-                    //     Commit();
-                    //     Page.RunModal(Page::"Purchase Quote", PurchaseOrder);
-                    // end;
                 end;
+                // if IndentLines.FindSet() then 
+                // repeat
+
+                // until IndentLines.Next()=0;
+                // end;
             }
         }
     }
+
+    procedure GetLastNo(purcHdr: Record "Purchase Header"): Integer
+    var
+        PurchLine: Record "Purchase Line";
+        LineNo: Integer;
+    begin
+        PurchLine.Reset();
+        PurchLine.SetRange("Document Type", purcHdr."Document Type");
+        PurchLine.SetRange("Document No.", purcHdr."No.");
+        if PurchLine.FindLast() then
+            LineNo += PurchLine."Line No." + 10000
+        else
+            LineNo := 10000;
+
+        exit(LineNo);
+    end;
 
     var
         myInt: Integer;
