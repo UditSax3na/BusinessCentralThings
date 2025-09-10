@@ -32,9 +32,12 @@
 - Created functionality to create purchase quote for all the vendors(vendor 1, vendor 2, vendor 3).
 - Created functionality so that every item will be added to its aforementioned vendors
 - Added new field indent no to identify the purchase order created for 
-- Created Report for purchase order using RDLC, 
+- Created Report for purchase order using RDLC
 ---
 
 ## Issues
 ### date - 10 sept 25
 - if purchase quote is created for all three vendors there may bhi few quotes which will be duplicated because of the similar amount of items
+
+# Author
+- [Udit Saxena](https://github.com/UditSax3na/)
