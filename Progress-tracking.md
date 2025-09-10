@@ -30,7 +30,8 @@
 - Added validation to all the field
 - Added Purchase Quote created field 
 - Created functionality to create purchase quote for all the vendors(vendor 1, vendor 2, vendor 3).
-
+- Created functionality so that every item will be added to its aforementioned vendors
+- Added new field indent no to identify the purchase order created for 
 ---
 
 ## Issues
