@@ -43,6 +43,10 @@ table 60500 "Indent Table"
         {
             DataClassification = ToBeClassified;
         }
+        field(7; "Purchase Quote Created"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
     }
     keys
     {

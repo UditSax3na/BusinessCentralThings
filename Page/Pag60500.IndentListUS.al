@@ -29,6 +29,10 @@ page 60500 "IndentListUS"
                 {
                     ApplicationArea = all;
                 }
+                field("Purchase Quote Created"; Rec."Purchase Quote Created")
+                {
+                    ApplicationArea = all;
+                }
             }
         }
         area(Factboxes)

@@ -44,6 +44,11 @@ page 60501 IndentCardUS
                     ApplicationArea = all;
                     Editable = false;
                 }
+                field("Purchase Quote Created"; Rec."Purchase Quote Created")
+                {
+                    ApplicationArea = all;
+                    Editable = false;
+                }
             }
             part(Lines; IndentLineUS)
             {
@@ -92,12 +97,19 @@ page 60501 IndentCardUS
                     Rec.TestField("Vendor No");
                     Rec.TestField("Vendor Name");
                     Rec.Status := Rec.Status::Release;
+                    Indentline.Init();
                     Indentline.SetRange("Document No", Rec.No);
                     if Indentline.FindSet() then begin
-                        Indentline.TestField("Item No");
-                        Indentline.TestField("Item Quantity");
-                        Indentline.TestField("Item Unit Price");
+                        repeat
+                            Indentline.TestField("Item No");
+                            Indentline.TestField("Item Quantity");
+                            Indentline.TestField("Item Unit Price");
+                            Indentline.TestField("Vendor No 1");
+                            Indentline.TestField("Vendor No 2");
+                            Indentline.TestField("Vendor No 3");
+                        until Indentline.Next() = 0;
                     end;
+                    Rec.Modify();
                 end;
             }
             action("Create Purchase Quote")
@@ -117,47 +129,118 @@ page 60501 IndentCardUS
                     noseries: Codeunit "No. Series";
                     purchpaysetup: Record "Purchases & Payables Setup";
                 begin
-                    // PurchaseOrder.Reset();
-                    purchpaysetup.Get();
-                    PurchaseOrder.Init();
-                    PurchaseOrder."Document Type" := PurchaseOrder."Document Type"::Quote;
-                    PurchaseOrder."No." := noseries.GetNextNo(purchpaysetup."Quote Nos.");
+                    if not Rec."Purchase Quote Created" then begin
+                        // for Vendor 1
+                        IndentLines.Reset();
+                        IndentLines.SetRange("Document No", Rec.No);
+                        PurchaseLines.Init();
 
-                    // PurchaseOrder.Validate("No.");
-                    PurchaseOrder.Insert();
-                    PurchaseOrder."Order Date" := Rec."Order Date";
+                        if IndentLines.FindFirst() then begin
+                            repeat
+                                purchpaysetup.Get();
+                                PurchaseOrder.Init();
+                                PurchaseOrder."Document Type" := PurchaseOrder."Document Type"::Quote;
+                                PurchaseOrder."No." := noseries.GetNextNo(purchpaysetup."Quote Nos.");
 
-                    IndentLines.Reset();
-                    IndentLines.SetRange("Document No", Rec.No);
-                    // if IndentLines.FindFirst() then;
-                    // PurchaseLines.Reset();
-                    PurchaseLines.Init();
+                                // PurchaseOrder.Validate("No.");
+                                PurchaseOrder.Insert();
+                                PurchaseOrder."Order Date" := Rec."Order Date";
+                                PurchaseLines.Init();
 
-                    if IndentLines.FindFirst() then begin
-                        PurchaseOrder."Buy-from Vendor No." := IndentLines."Vendor No 1";
-                        PurchaseOrder.Validate("Buy-from Vendor No.");
-                        // adding purchase lines to the purchase quote
-                        PurchaseLines."Document Type" := PurchaseOrder."Document Type";
-                        PurchaseLines."Document No." := PurchaseOrder."No.";
-                        PurchaseLines."Line No." := GetLastNo(PurchaseOrder);
-                        PurchaseLines.Type := PurchaseLines.Type::Item;
-                        PurchaseLines.Quantity := IndentLines."Item Quantity";
+                                PurchaseOrder."Indent No" := Rec.No;
+                                PurchaseOrder."Buy-from Vendor No." := IndentLines."Vendor No 1";
+                                PurchaseOrder.Validate("Buy-from Vendor No.");
+                                // adding purchase lines to the purchase quote
+                                PurchaseLines."Document Type" := PurchaseOrder."Document Type";
+                                PurchaseLines."Document No." := PurchaseOrder."No.";
+                                PurchaseLines."Line No." := GetLastNo(PurchaseOrder);
+                                PurchaseLines.Type := PurchaseLines.Type::Item;
+                                PurchaseLines.Quantity := IndentLines."Item Quantity";
 
-                        PurchaseLines.Insert();
-                        PurchaseLines."Buy-from Vendor No." := IndentLines."Vendor No 1";
-                        PurchaseLines."No." := IndentLines."Item No";
-                        PurchaseLines.Modify();
-                        // PurchaseOrder."Buy-from Vendor No.":= 
-                        PurchaseOrder.Modify();
+                                PurchaseLines.Insert();
+                                PurchaseLines."Buy-from Vendor No." := IndentLines."Vendor No 1";
+                                PurchaseLines."No." := IndentLines."Item No";
+                                PurchaseLines.Modify();
+                                PurchaseOrder.Modify();
+                                Message('Purchase quote created Successfully %1', PurchaseOrder."No.");
+                            until IndentLines.Next() = 0;
+                        end;
 
-                        Message('Purchase quote created Successfully %1', PurchaseOrder."No.");
+                        // for vendor 2
+                        IndentLines.Reset();
+                        IndentLines.SetRange("Document No", Rec.No);
+
+                        if IndentLines.FindFirst() then begin
+                            repeat
+                                purchpaysetup.Get();
+                                PurchaseOrder.Init();
+                                PurchaseOrder."Document Type" := PurchaseOrder."Document Type"::Quote;
+                                PurchaseOrder."No." := noseries.GetNextNo(purchpaysetup."Quote Nos.");
+
+                                // PurchaseOrder.Validate("No.");
+                                PurchaseOrder.Insert();
+                                PurchaseOrder."Order Date" := Rec."Order Date";
+                                PurchaseLines.Init();
+
+                                PurchaseOrder."Indent No" := Rec.No;
+                                PurchaseOrder."Buy-from Vendor No." := IndentLines."Vendor No 2";
+                                PurchaseOrder.Validate("Buy-from Vendor No.");
+                                // adding purchase lines to the purchase quote
+                                PurchaseLines."Document Type" := PurchaseOrder."Document Type";
+                                PurchaseLines."Document No." := PurchaseOrder."No.";
+                                PurchaseLines."Line No." := GetLastNo(PurchaseOrder);
+                                PurchaseLines.Type := PurchaseLines.Type::Item;
+                                PurchaseLines.Quantity := IndentLines."Item Quantity";
+
+                                PurchaseLines.Insert();
+                                PurchaseLines."Buy-from Vendor No." := IndentLines."Vendor No 2";
+                                PurchaseLines."No." := IndentLines."Item No";
+                                PurchaseLines.Modify();
+                                PurchaseOrder.Modify();
+                                Message('Purchase quote created Successfully %1', PurchaseOrder."No.");
+                            until IndentLines.Next() = 0;
+                        end;
+
+                        // for Vendor 3
+                        IndentLines.Reset();
+                        IndentLines.SetRange("Document No", Rec.No);
+                        PurchaseLines.Init();
+
+                        if IndentLines.FindFirst() then begin
+                            repeat
+                                purchpaysetup.Get();
+                                PurchaseOrder.Init();
+                                PurchaseOrder."Document Type" := PurchaseOrder."Document Type"::Quote;
+                                PurchaseOrder."No." := noseries.GetNextNo(purchpaysetup."Quote Nos.");
+
+                                // PurchaseOrder.Validate("No.");
+                                PurchaseOrder.Insert();
+                                PurchaseOrder."Order Date" := Rec."Order Date";
+                                PurchaseLines.Init();
+
+                                PurchaseOrder."Indent No" := Rec.No;
+                                PurchaseOrder."Buy-from Vendor No." := IndentLines."Vendor No 3";
+                                PurchaseOrder.Validate("Buy-from Vendor No.");
+                                // adding purchase lines to the purchase quote
+                                PurchaseLines."Document Type" := PurchaseOrder."Document Type";
+                                PurchaseLines."Document No." := PurchaseOrder."No.";
+                                PurchaseLines."Line No." := GetLastNo(PurchaseOrder);
+                                PurchaseLines.Type := PurchaseLines.Type::Item;
+                                PurchaseLines.Quantity := IndentLines."Item Quantity";
+
+                                PurchaseLines.Insert();
+                                PurchaseLines."Buy-from Vendor No." := IndentLines."Vendor No 3";
+                                PurchaseLines."No." := IndentLines."Item No";
+                                PurchaseLines.Modify();
+                                PurchaseOrder.Modify();
+                                Message('Purchase quote created Successfully %1', PurchaseOrder."No.");
+                            until IndentLines.Next() = 0;
+                        end;
+                        Rec."Purchase Quote Created" := true;
+                    end else begin
+                        Error('Purchase Quotes already created!');
                     end;
                 end;
-                // if IndentLines.FindSet() then 
-                // repeat
-
-                // until IndentLines.Next()=0;
-                // end;
             }
         }
     }
