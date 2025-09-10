@@ -2,7 +2,7 @@ page 60502 IndentLineUS
 {
     PageType = ListPart;
     UsageCategory = Lists;
-    SourceTable = IndentLineUS; // 'Table Name' that should be linked to the this 'Line'
+    SourceTable = IndentLineUS;
 
     layout
     {
@@ -18,12 +18,10 @@ page 60502 IndentLineUS
                     var
                         Item_: Record Item;
                     begin
-                        // reset to remove the last value in that variable
                         Clear(Rec."Item Description");
                         Item_.Reset();
                         Item_.SetRange("No.", Rec."Item No");
                         if Item_.FindFirst() then begin
-                            // value initialization
                             Rec."Item Description" := Item_.Description;
                             Rec."Item UOM" := Item_."Base Unit of Measure";
                         end;
@@ -67,10 +65,6 @@ page 60502 IndentLineUS
                 }
             }
         }
-        // area(Factboxes)
-        // {
-
-        // }
     }
 
     actions
