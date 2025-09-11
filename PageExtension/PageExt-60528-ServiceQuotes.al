@@ -28,7 +28,6 @@ pageextension 60528 ServiceQuotesExtension extends "Service Mgt. Setup"
 
     actions
     {
-        // Add changes to page actions here
     }
     var
         FinishedStatus: Boolean;

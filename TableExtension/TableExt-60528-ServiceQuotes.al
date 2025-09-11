@@ -6,6 +6,7 @@ tableextension 60528 ServiceQuotes extends "Service Mgt. Setup"
         field(7900; "Finished Status"; Boolean)
         {
             DataClassification = ToBeClassified;
+            InitValue = false;
         }
         field(7901; "Date of Finished Status"; Date)
         {
