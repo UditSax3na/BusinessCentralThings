@@ -24,6 +24,7 @@
 - created Enum
 - Uses and creation of Action buttons
 
+
 ---
 
 ### date - 10 sept 25
@@ -38,7 +39,7 @@
 
 ### date - 11 sept 25
 - Created a new layout with the action button to display a report.
-- 
+- Created a matrix layout and new report for the matrix layout.
 
 ---
 
