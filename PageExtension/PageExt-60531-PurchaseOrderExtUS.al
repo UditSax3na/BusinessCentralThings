@@ -9,7 +9,7 @@ pageextension 60531 PurchaseOrderExtUS extends "Purchase Order"
     {
         addafter("&Print")
         {
-            action("Print Purchase Order Report")
+            action("Print Purchase Order Report US")
             {
                 ApplicationArea = all;
                 Image = Print;
@@ -22,7 +22,7 @@ pageextension 60531 PurchaseOrderExtUS extends "Purchase Order"
                 begin
                     CurrentRec.Setrange("No.", Rec."No.");
                     if CurrentRec.FindFirst() then begin
-                        // Report.RunModal(Report::);
+                        Report.RunModal(60533, true, false, CurrentRec); // Request Window: True, System Printer: False
                     end;
                 end;
 

@@ -36,6 +36,11 @@
 
 ---
 
+### date - 11 sept 25
+- Created a new layout with the action button to display a report.
+
+---
+
 ## Issues
 ### date - 10 sept 25
 - if purchase quote is created for all three vendors there may bhi few quotes which will be duplicated because of the similar amount of items
