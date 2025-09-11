@@ -12,11 +12,10 @@ report 60534 MatrixReportExampleUS
         {
             RequestFilterFields = "Document No.";
             column(Item_No_; "Item No.") { }
-            column(IteminfoDescription; Iteminfo.Description) { }
+            column(Description; Description) { }
             column(Quantity; Quantity) { }
             column(Location_Code; "Location Code") { }
         }
-
     }
 
     var
