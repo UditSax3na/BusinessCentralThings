@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-09-11T11:36:40.2460185Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-09-12T04:45:21.8326234Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -603,6 +603,53 @@
                     </TablixCell>
                   </TablixCells>
                 </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Amount in words : </Value>
+                                  <Style />
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Code.AmountInWord(Fields!Line_Amount.Value)</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>5</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
@@ -628,12 +675,15 @@
                 <TablixMember>
                   <Group Name="Details" />
                 </TablixMember>
+                <TablixMember>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.19167in</Top>
             <Left>0.375in</Left>
-            <Height>1.15001in</Height>
+            <Height>1.40001in</Height>
             <Width>5.78334in</Width>
             <Style>
               <Border>
@@ -642,11 +692,15 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>1.34168in</Height>
+        <Height>1.59168in</Height>
         <Style />
       </Body>
       <Width>6.15834in</Width>
       <Page>
+        <LeftMargin>0in</LeftMargin>
+        <RightMargin>0in</RightMargin>
+        <TopMargin>0in</TopMargin>
+        <BottomMargin>0in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>
@@ -657,35 +711,161 @@
     end if
     Return Value
 End Function
-
+ 
 Public Function BlankPos(ByVal Value As Decimal)
     if Value &gt; 0 then
         Return ""
     end if
     Return Value
 End Function
-
+ 
 Public Function BlankZeroAndPos(ByVal Value As Decimal)
     if Value &gt;= 0 then
         Return ""
     end if
     Return Value
 End Function
-
+ 
 Public Function BlankNeg(ByVal Value As Decimal)
     if Value &lt; 0 then
         Return ""
     end if
     Return Value
 End Function
-
+ 
 Public Function BlankNegAndZero(ByVal Value As Decimal)
     if Value &lt;= 0 then
         Return ""
     end if
     Return Value
 End Function
-</Code>
+'***************
+'Main Function
+'***************
+Function AmountInWord(ByVal MyNumber)
+    Dim Rupees, Paise, Temp
+    Dim DecimalPlace, Count
+    Dim Place(9) As String
+        Place(2) = " Thousand "
+        Place(3) = " Lakh "
+        Place(4) = " Crore "
+        Place(5) = " Arab " ' String representation of amount
+        MyNumber = Trim(Str(MyNumber)) ' Position of decimal place 0 if none
+        DecimalPlace = InStr(MyNumber, ".")
+        'Convert Paise and set MyNumber to Rupee amount
+        If DecimalPlace &gt; 0 Then
+            Paise = GetTens(Left(Mid(MyNumber, DecimalPlace + 1) &amp; "00", 2))
+            MyNumber = Trim(Left(MyNumber, DecimalPlace - 1))
+        End If
+        Count = 1
+        Do While MyNumber &lt;&gt; ""
+            If Count = 1 Then Temp = GetHundreds(Right(MyNumber, 3))
+            If Count &gt; 1 Then Temp = GetHundreds(Right(MyNumber, 2))
+            If Temp &lt;&gt; "" Then Rupees = Temp &amp; Place(Count) &amp; Rupees
+            If Count = 1 And Len(MyNumber) &gt; 3 Then
+            MyNumber = Left(MyNumber, Len(MyNumber) - 3)
+            Else
+                If Count &gt; 1 And Len(MyNumber) &gt; 2 Then
+                MyNumber = Left(MyNumber, Len(MyNumber) - 2)
+                Else
+                    MyNumber = ""
+                End If
+            End If
+            Count = Count + 1
+        Loop
+        Select Case Rupees
+            Case ""
+                Rupees = "Zero Rupees"
+            Case "One"
+                Rupees = "One Rupee"
+            Case Else
+                Rupees = Rupees &amp; " Rupees"
+        End Select
+        Select Case Paise
+            Case ""
+                Paise = " and Zero Paise Only"
+            Case "One"
+                Paise = " and One Paisa Only"
+            Case Else
+                Paise = " and " &amp; Paise &amp; " Paise Only"
+        End Select
+    AmountInWord = Rupees &amp; Paise
+End Function
+'***************
+' Converts a number from 100-999 into text *
+'***************
+Function GetHundreds(ByVal MyNumber)
+    Dim Result As String
+        If Val(MyNumber) = 0 Then Exit Function
+        MyNumber = Right("000" &amp; MyNumber, 3) 'Convert the hundreds place
+        If Mid(MyNumber, 1, 1) &lt;&gt; "0" Then
+            Result = GetDigit(Mid(MyNumber, 1, 1)) &amp; " Hundred "
+        End If
+        'Convert the tens and ones place
+        If Mid(MyNumber, 2, 1) &lt;&gt; "0" Then
+            Result = Result &amp; GetTens(Mid(MyNumber, 2))
+            Else
+                Result = Result &amp; GetDigit(Mid(MyNumber, 3))
+        End If
+        GetHundreds = Result
+End Function
+'***************
+' Converts a number from 10 to 99 into text. *
+'***************
+Function GetTens(TensText)
+    Dim Result As String
+        Result = "" 'null out the temporary function value
+        If Val(Left(TensText, 1)) = 1 Then ' If value between 10-19
+            Select Case Val(TensText)
+                Case 10: Result = "Ten"
+                Case 11: Result = "Eleven"
+                Case 12: Result = "Twelve"
+                Case 13: Result = "Thirteen"
+                Case 14: Result = "Fourteen"
+                Case 15: Result = "Fifteen"
+                Case 16: Result = "Sixteen"
+                Case 17: Result = "Seventeen"
+                Case 18: Result = "Eighteen"
+                Case 19: Result = "Nineteen"
+                Case Else
+            End Select
+            Else ' If value between 20-99
+            Select Case Val(Left(TensText, 1))
+                Case 2: Result = "Twenty "
+                Case 3: Result = "Thirty "
+                Case 4: Result = "Forty "
+                Case 5: Result = "Fifty "
+                Case 6: Result = "Sixty "
+                Case 7: Result = "Seventy "
+                Case 8: Result = "Eighty "
+                Case 9: Result = "Ninety "
+                Case Else
+            End Select
+            Result = Result &amp; GetDigit _
+            (Right(TensText, 1)) 'Retrieve ones place
+        End If
+        GetTens = Result
+End Function
+'***************
+' Converts a number from 1 to 9 into text. *
+'***************
+Function GetDigit(Digit)
+    Select Case Val(Digit)
+        Case 1: GetDigit = "One"
+        Case 2: GetDigit = "Two"
+        Case 3: GetDigit = "Three"
+        Case 4: GetDigit = "Four"
+        Case 5: GetDigit = "Five"
+        Case 6: GetDigit = "Six"
+        Case 7: GetDigit = "Seven"
+        Case 8: GetDigit = "Eight"
+        Case 9: GetDigit = "Nine"
+        Case Else: GetDigit = ""
+    End Select
+End Function
+
+ 
+ </Code>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <DataSets>

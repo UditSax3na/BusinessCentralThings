@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-09-11T07:04:35.4434361Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-09-12T06:35:35.4356076Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -24,6 +24,85 @@
       <rd:DataSourceID>fdd87c25-32d3-4884-b296-4e5481f3821d</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="DocumentNo">
+          <DataField>DocumentNo</DataField>
+        </Field>
+        <Field Name="DocumentType">
+          <DataField>DocumentType</DataField>
+        </Field>
+        <Field Name="OrderDate">
+          <DataField>OrderDate</DataField>
+        </Field>
+        <Field Name="VendorNo">
+          <DataField>VendorNo</DataField>
+        </Field>
+        <Field Name="VendorName">
+          <DataField>VendorName</DataField>
+        </Field>
+        <Field Name="Status">
+          <DataField>Status</DataField>
+        </Field>
+        <Field Name="TotalLineAmount">
+          <DataField>TotalLineAmount</DataField>
+        </Field>
+        <Field Name="TotalLineAmountFormat">
+          <DataField>TotalLineAmountFormat</DataField>
+        </Field>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="CompanyAddress">
+          <DataField>CompanyAddress</DataField>
+        </Field>
+        <Field Name="CompanyCity">
+          <DataField>CompanyCity</DataField>
+        </Field>
+        <Field Name="CompanyPostCode">
+          <DataField>CompanyPostCode</DataField>
+        </Field>
+        <Field Name="CompanyPhone">
+          <DataField>CompanyPhone</DataField>
+        </Field>
+        <Field Name="CompanyEmail">
+          <DataField>CompanyEmail</DataField>
+        </Field>
+        <Field Name="CompanyLogo">
+          <DataField>CompanyLogo</DataField>
+        </Field>
+        <Field Name="No_">
+          <DataField>No_</DataField>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="QuantityFormat">
+          <DataField>QuantityFormat</DataField>
+        </Field>
+        <Field Name="Unit_Cost">
+          <DataField>Unit_Cost</DataField>
+        </Field>
+        <Field Name="Unit_CostFormat">
+          <DataField>Unit_CostFormat</DataField>
+        </Field>
+        <Field Name="Line_Amount">
+          <DataField>Line_Amount</DataField>
+        </Field>
+        <Field Name="Line_AmountFormat">
+          <DataField>Line_AmountFormat</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -598,8 +677,8 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox12">
-                          <rd:DefaultName>Textbox12</rd:DefaultName>
+                        <Textbox Name="Textbox10">
+                          <rd:DefaultName>Textbox10</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -650,8 +729,8 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox15">
-                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                        <Textbox Name="Textbox13">
+                          <rd:DefaultName>Textbox13</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -704,8 +783,8 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox16">
-                          <rd:DefaultName>Textbox16</rd:DefaultName>
+                        <Textbox Name="Textbox14">
+                          <rd:DefaultName>Textbox14</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -756,8 +835,8 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox17">
-                          <rd:DefaultName>Textbox17</rd:DefaultName>
+                        <Textbox Name="Textbox19">
+                          <rd:DefaultName>Textbox19</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -808,8 +887,8 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox18">
-                          <rd:DefaultName>Textbox18</rd:DefaultName>
+                        <Textbox Name="Textbox20">
+                          <rd:DefaultName>Textbox20</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -860,6 +939,72 @@
                     </TablixCell>
                   </TablixCells>
                 </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox8">
+                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Amount in words: </Value>
+                                  <Style />
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Code.AmountInWord(Sum(Fields!Line_Amount.Value))</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>5</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
@@ -888,12 +1033,15 @@
                 <TablixMember>
                   <KeepWithGroup>Before</KeepWithGroup>
                 </TablixMember>
+                <TablixMember>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0in</Top>
             <Left>0.34528in</Left>
-            <Height>1.025in</Height>
+            <Height>1.275in</Height>
             <Width>6.96389in</Width>
             <Style>
               <Border>
@@ -922,10 +1070,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>1.025in</Height>
+        <Height>1.275in</Height>
         <Style />
       </Body>
-      <Width>7.30917in</Width>
+      <Width>7.32306in</Width>
       <Page>
         <PageHeader>
           <Height>2.3675in</Height>
@@ -940,6 +1088,10 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
+                      <Value>Document No: </Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
                       <Value>=Fields!DocumentNo.Value</Value>
                       <Style />
                     </TextRun>
@@ -948,6 +1100,10 @@
                 </Paragraph>
                 <Paragraph>
                   <TextRuns>
+                    <TextRun>
+                      <Value>Docuemnt Type: </Value>
+                      <Style />
+                    </TextRun>
                     <TextRun>
                       <Value>=First(Fields!DocumentType.Value, "DataSet_Result")</Value>
                       <Style />
@@ -958,8 +1114,16 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
+                      <Value>Order Date: </Value>
+                      <Style>
+                        <Format>d</Format>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
                       <Value>=Fields!OrderDate.Value</Value>
-                      <Style />
+                      <Style>
+                        <Format>d</Format>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
@@ -967,7 +1131,11 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value />
+                      <Value>Total Amount: </Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Code.AmountInWord(Fields!TotalLineAmount.Value)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -975,7 +1143,7 @@
                 </Paragraph>
               </Paragraphs>
               <Top>1.53417in</Top>
-              <Left>3.83417in</Left>
+              <Left>3.84806in</Left>
               <Height>0.83333in</Height>
               <Width>3.475in</Width>
               <Style>
@@ -1016,6 +1184,16 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
+                      <Value>Name: </Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                        <TextDecoration>None</TextDecoration>
+                        <Color>#000000</Color>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
                       <Value>=Fields!VendorName.Value</Value>
                       <Style>
                         <FontStyle>Normal</FontStyle>
@@ -1031,6 +1209,16 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
+                      <Value>No: </Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Normal</FontWeight>
+                        <TextDecoration>None</TextDecoration>
+                        <Color>#000000</Color>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
                       <Value>=Fields!VendorNo.Value</Value>
                       <Style>
                         <FontStyle>Normal</FontStyle>
@@ -1045,6 +1233,16 @@
                 </Paragraph>
                 <Paragraph>
                   <TextRuns>
+                    <TextRun>
+                      <Value>Status: </Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Normal</FontWeight>
+                        <TextDecoration>None</TextDecoration>
+                        <Color>#000000</Color>
+                      </Style>
+                    </TextRun>
                     <TextRun>
                       <Value>=Fields!Status.Value</Value>
                       <Style>
@@ -1161,6 +1359,17 @@
                   <TextRuns>
                     <TextRun>
                       <Value>=Fields!CompanyPostCode.Value</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value />
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1320,114 +1529,173 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
     end if
     Return Value
 End Function
-
+ 
 Public Function BlankPos(ByVal Value As Decimal)
     if Value &gt; 0 then
         Return ""
     end if
     Return Value
 End Function
-
+ 
 Public Function BlankZeroAndPos(ByVal Value As Decimal)
     if Value &gt;= 0 then
         Return ""
     end if
     Return Value
 End Function
-
+ 
 Public Function BlankNeg(ByVal Value As Decimal)
     if Value &lt; 0 then
         Return ""
     end if
     Return Value
 End Function
-
+ 
 Public Function BlankNegAndZero(ByVal Value As Decimal)
     if Value &lt;= 0 then
         Return ""
     end if
     Return Value
 End Function
-</Code>
+'***************
+'Main Function
+'***************
+Function AmountInWord(ByVal MyNumber)
+    Dim Rupees, Paise, Temp
+    Dim DecimalPlace, Count
+    Dim Place(9) As String
+        Place(2) = " Thousand "
+        Place(3) = " Lakh "
+        Place(4) = " Crore "
+        Place(5) = " Arab " ' String representation of amount
+        MyNumber = Trim(Str(MyNumber)) ' Position of decimal place 0 if none
+        DecimalPlace = InStr(MyNumber, ".")
+        'Convert Paise and set MyNumber to Rupee amount
+        If DecimalPlace &gt; 0 Then
+            Paise = GetTens(Left(Mid(MyNumber, DecimalPlace + 1) &amp; "00", 2))
+            MyNumber = Trim(Left(MyNumber, DecimalPlace - 1))
+        End If
+        Count = 1
+        Do While MyNumber &lt;&gt; ""
+            If Count = 1 Then Temp = GetHundreds(Right(MyNumber, 3))
+            If Count &gt; 1 Then Temp = GetHundreds(Right(MyNumber, 2))
+            If Temp &lt;&gt; "" Then Rupees = Temp &amp; Place(Count) &amp; Rupees
+            If Count = 1 And Len(MyNumber) &gt; 3 Then
+            MyNumber = Left(MyNumber, Len(MyNumber) - 3)
+            Else
+                If Count &gt; 1 And Len(MyNumber) &gt; 2 Then
+                MyNumber = Left(MyNumber, Len(MyNumber) - 2)
+                Else
+                    MyNumber = ""
+                End If
+            End If
+            Count = Count + 1
+        Loop
+        Select Case Rupees
+            Case ""
+                Rupees = "Zero Rupees"
+            Case "One"
+                Rupees = "One Rupee"
+            Case Else
+                Rupees = Rupees &amp; " Rupees"
+        End Select
+        Select Case Paise
+            Case ""
+                Paise = " and Zero Paise Only"
+            Case "One"
+                Paise = " and One Paisa Only"
+            Case Else
+                Paise = " and " &amp; Paise &amp; " Paise Only"
+        End Select
+    AmountInWord = Rupees &amp; Paise
+End Function
+'***************
+' Converts a number from 100-999 into text *
+'***************
+Function GetHundreds(ByVal MyNumber)
+    Dim Result As String
+        If Val(MyNumber) = 0 Then Exit Function
+        MyNumber = Right("000" &amp; MyNumber, 3) 'Convert the hundreds place
+        If Mid(MyNumber, 1, 1) &lt;&gt; "0" Then
+            Result = GetDigit(Mid(MyNumber, 1, 1)) &amp; " Hundred "
+        End If
+        'Convert the tens and ones place
+        If Mid(MyNumber, 2, 1) &lt;&gt; "0" Then
+            Result = Result &amp; GetTens(Mid(MyNumber, 2))
+            Else
+                Result = Result &amp; GetDigit(Mid(MyNumber, 3))
+        End If
+        GetHundreds = Result
+End Function
+'***************
+' Converts a number from 10 to 99 into text. *
+'***************
+Function GetTens(TensText)
+    Dim Result As String
+        Result = "" 'null out the temporary function value
+        If Val(Left(TensText, 1)) = 1 Then ' If value between 10-19
+            Select Case Val(TensText)
+                Case 10: Result = "Ten"
+                Case 11: Result = "Eleven"
+                Case 12: Result = "Twelve"
+                Case 13: Result = "Thirteen"
+                Case 14: Result = "Fourteen"
+                Case 15: Result = "Fifteen"
+                Case 16: Result = "Sixteen"
+                Case 17: Result = "Seventeen"
+                Case 18: Result = "Eighteen"
+                Case 19: Result = "Nineteen"
+                Case Else
+            End Select
+            Else ' If value between 20-99
+            Select Case Val(Left(TensText, 1))
+                Case 2: Result = "Twenty "
+                Case 3: Result = "Thirty "
+                Case 4: Result = "Forty "
+                Case 5: Result = "Fifty "
+                Case 6: Result = "Sixty "
+                Case 7: Result = "Seventy "
+                Case 8: Result = "Eighty "
+                Case 9: Result = "Ninety "
+                Case Else
+            End Select
+            Result = Result &amp; GetDigit _
+            (Right(TensText, 1)) 'Retrieve ones place
+        End If
+        GetTens = Result
+End Function
+'***************
+' Converts a number from 1 to 9 into text. *
+'***************
+Function GetDigit(Digit)
+    Select Case Val(Digit)
+        Case 1: GetDigit = "One"
+        Case 2: GetDigit = "Two"
+        Case 3: GetDigit = "Three"
+        Case 4: GetDigit = "Four"
+        Case 5: GetDigit = "Five"
+        Case 6: GetDigit = "Six"
+        Case 7: GetDigit = "Seven"
+        Case 8: GetDigit = "Eight"
+        Case 9: GetDigit = "Nine"
+        Case Else: GetDigit = ""
+    End Select
+End Function
+
+ 
+ </Code>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="DocumentNo">
-          <DataField>DocumentNo</DataField>
-        </Field>
-        <Field Name="DocumentType">
-          <DataField>DocumentType</DataField>
-        </Field>
-        <Field Name="OrderDate">
-          <DataField>OrderDate</DataField>
-        </Field>
-        <Field Name="VendorNo">
-          <DataField>VendorNo</DataField>
-        </Field>
-        <Field Name="VendorName">
-          <DataField>VendorName</DataField>
-        </Field>
-        <Field Name="Status">
-          <DataField>Status</DataField>
-        </Field>
-        <Field Name="CompanyName">
-          <DataField>CompanyName</DataField>
-        </Field>
-        <Field Name="CompanyAddress">
-          <DataField>CompanyAddress</DataField>
-        </Field>
-        <Field Name="CompanyCity">
-          <DataField>CompanyCity</DataField>
-        </Field>
-        <Field Name="CompanyPostCode">
-          <DataField>CompanyPostCode</DataField>
-        </Field>
-        <Field Name="CompanyPhone">
-          <DataField>CompanyPhone</DataField>
-        </Field>
-        <Field Name="CompanyEmail">
-          <DataField>CompanyEmail</DataField>
-        </Field>
-        <Field Name="CompanyLogo">
-          <DataField>CompanyLogo</DataField>
-        </Field>
-        <Field Name="No_">
-          <DataField>No_</DataField>
-        </Field>
-        <Field Name="Description">
-          <DataField>Description</DataField>
-        </Field>
-        <Field Name="Quantity">
-          <DataField>Quantity</DataField>
-        </Field>
-        <Field Name="QuantityFormat">
-          <DataField>QuantityFormat</DataField>
-        </Field>
-        <Field Name="Unit_Cost">
-          <DataField>Unit_Cost</DataField>
-        </Field>
-        <Field Name="Unit_CostFormat">
-          <DataField>Unit_CostFormat</DataField>
-        </Field>
-        <Field Name="Line_Amount">
-          <DataField>Line_Amount</DataField>
-        </Field>
-        <Field Name="Line_AmountFormat">
-          <DataField>Line_AmountFormat</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>

@@ -19,6 +19,7 @@ report 60532 "Purchase Order Report US"
             column(VendorNo; "Buy-from Vendor No.") { }
             column(VendorName; "Buy-from Vendor Name") { }
             column(Status; Status) { }
+            column(TotalLineAmount; TotalLineAmount) { }
 
             // Company Information
             dataitem("Company Information"; "Company Information")
@@ -42,6 +43,19 @@ report 60532 "Purchase Order Report US"
                 column(Unit_Cost; "Unit Cost") { }
                 column(Line_Amount; "Line Amount") { }
             }
+            trigger OnAfterGetRecord()
+            var
+                PurchLine: Record "Purchase Line";
+            begin
+                Clear(TotalLineAmount);
+                PurchLine.Reset();
+                PurchLine.SetRange("Document No.", "Purchase Header"."No."); // 
+                if PurchLine.FindSet() then begin
+                    repeat
+                        TotalLineAmount += PurchLine."Line Amount";
+                    until PurchLine.Next() = 0;
+                end;
+            end;
         }
     }
 
@@ -53,4 +67,15 @@ report 60532 "Purchase Order Report US"
 
     var
         compinfo: Record "Company Information";
+        TotalLineAmount: Decimal;
+
+    // local procedure TotalLineAmount(): Decimal
+    // var
+    //     PurchLines: Record "Purchase Line";
+    //     total: Decimal;
+    // begin
+    //     // if 
+    //     PurchLines.Init();
+    //     PurchLInes.SetRange("Document No.", )
+    // end;
 }
