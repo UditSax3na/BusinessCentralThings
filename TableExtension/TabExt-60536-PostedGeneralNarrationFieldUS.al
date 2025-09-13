@@ -2,7 +2,7 @@ tableextension 60536 PostedGeneralNarrationFieldUS extends "Posted Gen. Journal 
 {
     fields
     {
-        field(600; "Narration"; Text[400])
+        field(60000; "Narration"; Text[400])
         {
         }
     }

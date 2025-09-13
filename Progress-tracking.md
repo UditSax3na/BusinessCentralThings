@@ -42,6 +42,10 @@
 
 ---
 
+### date - 12 sept 25
+- Created New field in Gj and make it visible in posted gj as well.
+- Code Unit and their usecases
+
 ## Issues
 ### date - 10 sept 25
 - if purchase quote is created for all three vendors there may bhi few quotes which will be duplicated because of the similar amount of items

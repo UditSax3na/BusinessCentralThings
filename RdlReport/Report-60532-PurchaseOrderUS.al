@@ -20,23 +20,20 @@ report 60532 "Purchase Order Report US"
             column(VendorName; "Buy-from Vendor Name") { }
             column(Status; Status) { }
             column(TotalLineAmount; TotalLineAmount) { }
-
+            column(CompanyName; CompanyName) { }
+            column(CompanyAddress; 'Adress') { }
+            column(CompanyCity; 'City') { }
+            column(CompanyPostCode; '"Post Code"') { }
+            column(CompanyPhone; '"Phone No."') { }
+            column(CompanyEmail; '"E-Mail")') { }
+            column(CompanyLogo; 'Picture') { }
             // Company Information
-            dataitem("Company Information"; "Company Information")
-            {
-                column(CompanyName; Name) { }
-                column(CompanyAddress; Address) { }
-                column(CompanyCity; City) { }
-                column(CompanyPostCode; "Post Code") { }
-                column(CompanyPhone; "Phone No.") { }
-                column(CompanyEmail; "E-Mail") { }
-                column(CompanyLogo; Picture) { }
-            }
 
             // Purchase Line Data
             dataitem("Purchase Line"; "Purchase Line")
             {
                 DataItemLink = "Document No." = field("No.");
+                DataItemLinkReference = "Purchase Header";
                 column(No_; "No.") { }
                 column(Description; Description) { }
                 column(Quantity; Quantity) { }
@@ -68,14 +65,4 @@ report 60532 "Purchase Order Report US"
     var
         compinfo: Record "Company Information";
         TotalLineAmount: Decimal;
-
-    // local procedure TotalLineAmount(): Decimal
-    // var
-    //     PurchLines: Record "Purchase Line";
-    //     total: Decimal;
-    // begin
-    //     // if 
-    //     PurchLines.Init();
-    //     PurchLInes.SetRange("Document No.", )
-    // end;
 }
