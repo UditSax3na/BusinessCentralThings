@@ -2,7 +2,7 @@ tableextension 60539 ItemTableUS extends Item
 {
     fields
     {
-        field(60000; TotalAmountULE; Decimal)
+        field(60000; TotalAmountULE; Integer)
         {
             Caption = 'Total Amount of Udit Ledger Entry';
         }

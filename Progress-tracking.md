@@ -46,6 +46,18 @@
 - Created New field in Gj and make it visible in posted gj as well.
 - Code Unit and their usecases
 
+--- 
+### date - 13 sept 25
+- Create new extension page
+- create new field in item 
+- create new page for udit ledger entries
+
+---
+### date - 14 sept 25
+
+
+---
+
 ## Issues
 ### date - 10 sept 25
 - if purchase quote is created for all three vendors there may bhi few quotes which will be duplicated because of the similar amount of items

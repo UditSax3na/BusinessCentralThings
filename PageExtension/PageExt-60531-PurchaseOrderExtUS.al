@@ -28,6 +28,21 @@ pageextension 60531 PurchaseOrderExtUS extends "Purchase Order"
 
             }
         }
+        addafter("Print Purchase Order Report US")
+        {
+            action("PostUS")
+            {
+                ApplicationArea = all;
+                Image = Post;
+                Promoted = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                begin
+
+                end;
+            }
+        }
     }
 
     var

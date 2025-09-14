@@ -5,52 +5,70 @@ table 60538 UditLedgerEntriesUS
 
     fields
     {
-        field(1; "Uno"; Integer)
+        field(1; DocumentNo; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(2; "Posting Date"; Date)
+        field(2; "LineNo"; Integer)
+        {
+            DataClassification = ToBeClassified;
+            AutoIncrement = true;
+        }
+        field(3; "Posting Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(3; "ItemNo"; Code[20])
+        field(4; "ItemNo"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = Item;
+            trigger OnValidate()
+            var
+                ItemRec: Record Item;
+            begin
+                // updating all the fields right after 
+                ItemRec.Reset();
+                ItemRec.SetRange("No.", Rec.ItemNo);
+                if ItemRec.FindFirst() then begin
+                    Rec.Description := ItemRec.Description;
+                    // Rec.DocumentNo
+                end;
+            end;
+        }
+        field(5; "Description"; Text[400])
         {
             DataClassification = ToBeClassified;
         }
-        field(4; "Description"; Text[400])
+        field(6; Quantity; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(5; Quantity; Integer)
+        field(7; "Invoiced Quantity"; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(6; "Invoiced Quantity"; Integer)
+        field(8; "Remaining Quantity"; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(7; "Remaining Quantity"; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(8; "Sales Amount Actual"; Decimal)
+        field(9; "Sales Amount Actual"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
 
-        field(9; "Cost Amount (Actual)"; Decimal)
+        field(10; "Cost Amount (Actual)"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(10; "Cost Amount"; Decimal)
+        field(11; "Cost Amount"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(11; OrderType; Enum OrderTypeExt)
+        field(12; OrderType; Enum OrderTypeExt)
         {
             DataClassification = ToBeClassified;
         }
-        field(12; Open; Boolean)
+        field(13; Open; Boolean)
         {
             DataClassification = ToBeClassified;
         }
@@ -59,7 +77,7 @@ table 60538 UditLedgerEntriesUS
 
     keys
     {
-        key(PK; Uno)
+        key(PK; LineNo)
         {
             Clustered = true;
         }
