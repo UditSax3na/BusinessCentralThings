@@ -13,7 +13,7 @@ page 60501 IndentCardUS
                 Editable = Rec.Status = Rec.Status::Open;
                 field(No; Rec.No)
                 {
-                    ApplicationArea = all; // helps to make fields / button any thing on ui visible
+                    ApplicationArea = all; // helps to make (fields / button) any thing on ui visible
                     Editable = false;
                 }
                 field("Vendor No"; Rec."Vendor No")
