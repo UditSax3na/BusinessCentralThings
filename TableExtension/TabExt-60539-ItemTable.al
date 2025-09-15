@@ -23,6 +23,4 @@ tableextension 60539 ItemTableUS extends Item
 
     var
         myInt: Integer;
-
-        ledger: record "Item Ledger Entry";
 }

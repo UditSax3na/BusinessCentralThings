@@ -9,7 +9,7 @@ pageextension 60539 MyExtension extends "Item Card"
                 ApplicationArea = all;
                 Editable = false;
                 LookupPageId = UditLedgerEntriesLines;
-                DrillDownPageId = UditLedgerEntriesLines;
+                // DrillDownPageId = UditLedgerEntriesLines;
             }
         }
     }

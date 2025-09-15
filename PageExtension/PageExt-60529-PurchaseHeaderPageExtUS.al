@@ -1,4 +1,4 @@
-pageextension 60529 PurchaseHeaderPageExt extends "Purchase Quotes"
+pageextension 60529 PurchaseHeaderPageExtUS extends "Purchase Quotes"
 {
     layout
     {

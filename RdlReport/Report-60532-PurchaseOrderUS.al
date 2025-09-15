@@ -10,7 +10,7 @@ report 60532 "Purchase Order Report US"
     {
         dataitem("Purchase Header"; "Purchase Header")
         {
-            DataItemTableView = where("Document Type" = const(Order));
+            //  DataItemTableView = where("Document Type" = const(Order));
             RequestFilterFields = "No.";
 
             column(DocumentNo; "No.") { }

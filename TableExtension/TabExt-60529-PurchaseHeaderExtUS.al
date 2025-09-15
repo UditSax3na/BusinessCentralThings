@@ -1,4 +1,4 @@
-tableextension 60529 PurchaseHeaderExt extends "Purchase Header"
+tableextension 60529 PurchaseHeaderExtUS extends "Purchase Header"
 {
     fields
     {

@@ -53,14 +53,21 @@
 - create new page for udit ledger entries
 
 ---
-### date - 14 sept 25
+### date - 15 sept 25
+- Created new fields in sales order 
+- Created report extension for sales order
+- created the the udit ledger entries logic
+- used calcfield in the udit ledger entries 
+
+---
+### date - 16 sept 25
 
 
 ---
 
 ## Issues
 ### date - 10 sept 25
-- if purchase quote is created for all three vendors there may bhi few quotes which will be duplicated because of the similar amount of items
+- if purchase quote is created for all three vendors there may be few quotes which will be duplicated because of the similar amount of items
 
 # Author
 - [Udit Saxena](https://github.com/UditSax3na/)

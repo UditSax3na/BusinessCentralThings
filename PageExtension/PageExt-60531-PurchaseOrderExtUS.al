@@ -43,6 +43,36 @@ pageextension 60531 PurchaseOrderExtUS extends "Purchase Order"
                 end;
             }
         }
+        // modify(Post)
+        // {
+        // var
+        //     ItemLedgEntry: Record ManeLedgerEntries;
+        //     ItemLedgEntryPage: Page ManeList;
+        // begin
+        //     ItemLedgEntry.SetRange("ItemNo.", rec."No.");
+        //     Page.Run(Page::ManeList, ItemLedgEntry);
+        // end;
+        // trigger OnAfterAction()
+        // var
+        //     PurchaseOrder: Record "Purchase Header";
+        //     Noseries: Record "No. Series";
+        //     NoseriesPage: Page "No. Series Lines";
+        //     SelectedSeries: Code[20];
+
+        // begin
+        //     // Selection of the number series
+        //     if NoseriesPage.RunModal() = Action::LookupOK then begin
+        //         // Noseries.SetFilter(Description, '@*Posted Purchase Invoice*');
+        //         NoseriesPage.GetRecord(Noseries);
+        //         SelectedSeries := Noseries.Code;
+
+        //         Rec.Validate("Posting No. Series", SelectedSeries);
+        //         Rec.Modify();
+        //     end;
+        // Selection of the record in which the number series should be posted
+        // 
+        //     end;
+        // }
     }
 
     var
