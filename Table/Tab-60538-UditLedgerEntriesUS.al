@@ -2,23 +2,17 @@ table 60538 UditLedgerEntriesUS
 {
     DataClassification = ToBeClassified;
     Caption = 'Udit Ledger Entries US';
+    // LookupPageId = UditLedgerEntriesLines;
+    LookupPageId = 60542;
 
     fields
     {
-        field(1; DocumentNo; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(2; "LineNo"; Integer)
+        field(1; "LineNo"; Integer)
         {
             DataClassification = ToBeClassified;
             AutoIncrement = true;
         }
-        field(3; "Posting Date"; Date)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(4; "ItemNo"; Code[20])
+        field(2; "ItemNo"; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = Item;
@@ -35,40 +29,11 @@ table 60538 UditLedgerEntriesUS
                 end;
             end;
         }
-        field(5; "Description"; Text[400])
+        field(3; "Description"; Text[400])
         {
             DataClassification = ToBeClassified;
         }
-        field(6; Quantity; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(7; "Invoiced Quantity"; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(8; "Remaining Quantity"; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(9; "Sales Amount Actual"; Decimal)
-        {
-            DataClassification = ToBeClassified;
-        }
-
-        field(10; "Cost Amount (Actual)"; Decimal)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(11; "Cost Amount"; Decimal)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(12; OrderType; Enum OrderTypeExt)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(13; Open; Boolean)
+        field(4; Quantity; Decimal)
         {
             DataClassification = ToBeClassified;
         }
