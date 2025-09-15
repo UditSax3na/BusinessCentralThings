@@ -135,7 +135,7 @@ page 60501 IndentCardUS
                         IndentLines.SetRange("Document No", Rec.No);
                         PurchaseLines.Init();
 
-                        if IndentLines.FindFirst() then begin
+                        if IndentLines.FindSet() then begin
                             repeat
                                 purchpaysetup.Get();
                                 PurchaseOrder.Init();
@@ -170,7 +170,7 @@ page 60501 IndentCardUS
                         IndentLines.Reset();
                         IndentLines.SetRange("Document No", Rec.No);
 
-                        if IndentLines.FindFirst() then begin
+                        if IndentLines.FindSet() then begin
                             repeat
                                 purchpaysetup.Get();
                                 PurchaseOrder.Init();
@@ -206,7 +206,7 @@ page 60501 IndentCardUS
                         IndentLines.SetRange("Document No", Rec.No);
                         PurchaseLines.Init();
 
-                        if IndentLines.FindFirst() then begin
+                        if IndentLines.FindSet() then begin
                             repeat
                                 purchpaysetup.Get();
                                 PurchaseOrder.Init();
@@ -240,6 +240,29 @@ page 60501 IndentCardUS
                     end else begin
                         Error('Purchase Quotes already created!');
                     end;
+                end;
+            }
+            action("Post")
+            {
+                Image = Post;
+                Promoted = true;
+                PromotedCategory = Process;
+                ApplicationArea = all;
+
+                trigger OnAction()
+                var
+                    PurchaseOrder: Record "Purchase Header";
+                    PurchaseLines: Record "Purchase Line";
+                    IndentLines: Record IndentLineUS;
+                begin
+                    IndentLines.Reset();
+                    IndentLines.SetRange("Document No", Rec.No);
+                    if IndentLines.FindSet() then begin
+                        PurchaseOrder.Init();
+                        PurchaseLines.Init();
+
+                    end;
+
                 end;
             }
         }
