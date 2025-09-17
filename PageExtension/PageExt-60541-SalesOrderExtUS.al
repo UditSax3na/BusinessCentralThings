@@ -21,11 +21,23 @@ pageextension 60542 SalesOrderExtUS extends "Sales Order"
                 ApplicationArea = all;
             }
         }
+
     }
 
     actions
     {
         // Add changes to page actions here
+        modify(Post)
+        {
+            trigger OnBeforeAction()
+            var
+                NoSeries: Record "No. Series";
+
+            begin
+                // Message('Before Action!');
+
+            end;
+        }
     }
 
     var
