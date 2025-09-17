@@ -1,6 +1,6 @@
 # Progress Tracking
 ## Tasks
-### date:- 5 sept 25
+### date:- 5 Sept 25
 - Create Indent table 
 - Created Indent page 
 - created Indent List US
@@ -8,7 +8,7 @@
 
 ---
 
-### date:- 8 sept 25
+### date:- 8 Sept 25
 - Created indent lines us
 - added status field to the indent card
 - added number series to it
@@ -16,7 +16,7 @@
 
 ---
 
-### date:- 9 sept 25
+### date:- 9 Sept 25
 - Create reopen, released button and their action in indent cards
 - Sent data from indent card to Purchase Quote
 - created table extension
@@ -26,7 +26,7 @@
 
 ---
 
-### date - 10 sept 25
+### date - 10 Sept 25
 - Added validation to all the field
 - Added Purchase Quote created field 
 - Created functionality to create purchase quote for all the vendors(vendor 1, vendor 2, vendor 3).
@@ -36,38 +36,54 @@
 
 ---
 
-### date - 11 sept 25
+### date - 11 Sept 25
 - Created a new layout with the action button to display a report.
 - Created a matrix layout and new report for the matrix layout.
 
 ---
 
-### date - 12 sept 25
+### date - 12 Sept 25
 - Created New field in Gj and make it visible in posted gj as well.
 - Code Unit and their usecases
 
 --- 
-### date - 13 sept 25
+### date - 13 Sept 25
 - Create new extension page
 - create new field in item 
 - create new page for udit ledger entries
 
 ---
-### date - 15 sept 25
+### date - 15 Sept 25
 - Created new fields in sales order 
 - Created report extension for sales order
 - created the the udit ledger entries logic
 - used calcfield in the udit ledger entries 
 
 ---
-### date - 16 sept 25
-
+### date - 16 Sept 25
+- created a notification for card page in sales invoice
+- created functionality which perform a notification for a localscope 
+- notification displays the last posted amount of the item for a specific customer (unit price).
+- learned report extension.
 
 ---
+### date - 17 sept 25
+- solved the issue with the notification (notification was coming more than one time)
+- solving the issue of showing notification in the notification panel
+- 
+
+---
+### date - 18 Sept 25
+
+
+
+
+
 
 ## Issues
 ### date - 10 sept 25
 - if purchase quote is created for all three vendors there may be few quotes which will be duplicated because of the similar amount of items
+- downloadable report issue in video (d/z/Recordings/Recordings/13-7-2023.mp4)
 
 # Author
 - [Udit Saxena](https://github.com/UditSax3na/)

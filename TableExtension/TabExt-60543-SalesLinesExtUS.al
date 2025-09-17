@@ -2,39 +2,9 @@ tableextension 60543 SalesLinesExtUS extends "Sales Line"
 {
     fields
     {
-        //     modify("Unit Price")
-        //     {
-        //         trigger OnBeforeValidate()
-        //         var
-        //             SalesHeader: Record "Sales Invoice Header";
-        //             SalesLines: Record "Sales Invoice Line";
-        //             // LastPrice: Decimal;
-        //             Notificobj: Notification;
-        //         begin
-        //             if rec."Unit Price" <> xRec."Unit Price" then begin
-
-        //                 SalesHeader.Reset();
-        //                 SalesHeader.SetRange("Bill-to Customer No.", Rec."Bill-to Customer No.");
-
-        //                 // Items
-        //                 if SalesHeader.FindLast() then begin
-        //                     SalesLines.Reset();
-        //                     SalesLines.SetRange("Document No.", SalesHeader."No."); // i did somethings
-        //                     if SalesLines.FindLast() and ("No." <> '') then begin
-        //                         NotifShown := True;
-        //                         Notificobj.Message := StrSubstNo('Previously Sold Amount %1', SalesLines."Unit Price");
-        //                         Notificobj.Scope := NotificationScope::LocalScope;
-        //                         Notificobj.Send();
-        //                     end;
-        //                 end;
-        //             end;
-        //         end;
-        //     }
-
         modify("No.")
         {
             trigger OnBeforeValidate()
-
             // for the notification part
             var
                 SalesHeader: Record "Sales Invoice Header";
@@ -43,15 +13,18 @@ tableextension 60543 SalesLinesExtUS extends "Sales Line"
             begin
                 SalesHeader.Reset();
                 SalesHeader.SetRange("Bill-to Customer No.", Rec."Bill-to Customer No.");
+                Message('We are here 1, %1', SalesHeader."No.");
 
                 if SalesHeader.FindLast() then begin
+                    Message('We are here 2, %1', SalesHeader."No.");
                     SalesLines.Reset();
-                    SalesLines.SetRange("Document No.", SalesHeader."No."); // i did something
+                    SalesLines.SetRange("Document No.", SalesHeader."No.");
                     if SalesLines.FindLast() and ("No." <> '') then begin
+                        Message('We are here 3, %1', SalesHeader."No.");
                         Notificobj.Message := StrSubstNo('Previously Sold Amount %1', SalesLines."Unit Price");
                         Notificobj.Scope := NotificationScope::LocalScope;
                         Notificobj.Send();
-
+                        Message('we are here ! %1', SalesLines."Unit Price");
                     end;
                 end;
             end;
@@ -111,3 +84,33 @@ tableextension 60543 SalesLinesExtUS extends "Sales Line"
     //             CurrPage.MyPopupPart.InvokeExtensibilityMethod('showPopup', null);
     //     end;
 }
+
+// Old Code
+//     modify("Unit Price")
+//     {
+//         trigger OnBeforeValidate()
+//         var
+//             SalesHeader: Record "Sales Invoice Header";
+//             SalesLines: Record "Sales Invoice Line";
+//             // LastPrice: Decimal;
+//             Notificobj: Notification;
+//         begin
+//             if rec."Unit Price" <> xRec."Unit Price" then begin
+
+//                 SalesHeader.Reset();
+//                 SalesHeader.SetRange("Bill-to Customer No.", Rec."Bill-to Customer No.");
+
+//                 // Items
+//                 if SalesHeader.FindLast() then begin
+//                     SalesLines.Reset();
+//                     SalesLines.SetRange("Document No.", SalesHeader."No."); // i did somethings
+//                     if SalesLines.FindLast() and ("No." <> '') then begin
+//                         NotifShown := True;
+//                         Notificobj.Message := StrSubstNo('Previously Sold Amount %1', SalesLines."Unit Price");
+//                         Notificobj.Scope := NotificationScope::LocalScope;
+//                         Notificobj.Send();
+//                     end;
+//                 end;
+//             end;
+//         end;
+//     }
