@@ -3,6 +3,10 @@ tableextension 60543 SalesLinesExtUS extends "Sales Line"
     fields
     {
         // modify("No.")
+        field(60000; BarCode; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
         modify("Unit Price")
         {
             trigger OnBeforeValidate()

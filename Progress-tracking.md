@@ -68,12 +68,28 @@
 
 ---
 ### date - 17 sept 25
-- solved the issue with the notification (notification was coming more than one time)
-- solving the issue of showing notification in the notification panel
-- 
+- Solved the issue with the notification (notification was coming more than one time)
+- Solving the issue of showing notification in the notification panel
+- Solved the issue with Downloading the report in any format xlsx, Pdf, or Word.
 
 ---
 ### date - 18 Sept 25
+- Report extension Completed
+- Add 2 new fields barcode and sources of sales in the Sales Order
+- add 2 new fields in the extended report 
+
+---
+### date - 19 Sept 25
+- created extention of Activity cues.
+- created two field both "no . of posted invoices" and "total active customers".
+- created new field named "30 Days filter".
+- Applied the filter on the field "No. Of posted invoice".
+
+---
+### date - 22 Sept 25
+-
+
+---
 
 
 

@@ -32,13 +32,15 @@ pageextension 60542 SalesOrderExtUS extends "Sales Order"
             trigger OnBeforeAction()
             var
                 NoSeries: Record "No. Series";
-
             begin
                 // Message('Before Action!');
-
             end;
         }
+        // addafter(Post)
+        // {
+
     }
+    // }
 
     var
         myInt: Integer;
