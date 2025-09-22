@@ -6,3 +6,8 @@
 *.app
 
 Testings.py
+
+*.png
+*.jpeg
+*.jpg
+*.svg

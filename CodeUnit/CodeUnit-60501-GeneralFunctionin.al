@@ -9,8 +9,9 @@ codeunit 60501 GeneralFunctionInUS
     var
         CustomerRec: Record Customer;
     begin
-        CustomerRec.CalcFields(Balance);
-        CustomerRec.SetFilter(Balance, '<%1', 0);
+        CustomerRec.Reset();
+        CustomerRec.CalcFields("Balance (LCY)");
+        CustomerRec.SetFilter("Balance (LCY)", '<%1', 0.0);
         if CustomerRec.FindSet() then begin
             repeat
                 CustomerRec."Set Color Red" := true;
