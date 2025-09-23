@@ -3,13 +3,14 @@ tableextension 60543 SalesLinesExtUS extends "Sales Line"
     fields
     {
         // modify("No.")
+
         field(60000; BarCode; Code[20])
         {
             DataClassification = ToBeClassified;
         }
         modify("Unit Price")
         {
-            trigger OnBeforeValidate()
+            trigger OnAfterValidate()
             // for the notification part
             var
                 SalesHeader: Record "Sales Invoice Header";
@@ -20,21 +21,14 @@ tableextension 60543 SalesLinesExtUS extends "Sales Line"
                 SalesHeader.SetRange("Bill-to Customer No.", Rec."Bill-to Customer No.");
                 Message('We are here 1, %1', SalesHeader."No.");
 
-                if SalesHeader.FindLast() then begin
-                    Message('We are here 2, %1', SalesHeader."No.");
-                    SalesLines.Reset();
-                    SalesLines.SetRange("Document No.", SalesHeader."No.");
-                    if SalesLines.FindLast() and ("No." <> '') then begin
-                        Message('We are here 3, %1', SalesHeader."No.");
-                        Notificobj.Message := StrSubstNo('Previously Sold Amount %1', SalesLines."Unit Price");
-                        Notificobj.Scope := NotificationScope::LocalScope;
-                        Notificobj.Send();
-                        Message('we are here ! %1', SalesLines."Unit Price");
-                    end;
-                end;
             end;
         }
     }
+    // usercontrol(Toast; "ToastAddIn")
+    //     {
+    //         ApplicationArea = All;
+    //     }
+    // }
 
 
     // var
