@@ -98,9 +98,11 @@
 ---
 ### date - 24 sept 25
 - finding new approach to figuring out the notification part.
+- selecting the new approach over the bell one.
+- created a factbox for the sales order.
 - 
 
-
+---
 
 
 

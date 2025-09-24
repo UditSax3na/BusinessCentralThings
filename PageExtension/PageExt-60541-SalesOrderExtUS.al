@@ -7,7 +7,7 @@ pageextension 60542 SalesOrderExtUS extends "Sales Order"
             part(SalesLineFactbox; SalesLineFactbox)
             {
                 ApplicationArea = All;
-                SubPageLink = "Document No." = FIELD("No."), "Document Type" = FIELD("Document Type");//,"Line No." = FIELD("Line No.");
+                SubPageLink = "Document No." = FIELD("No."), "Document Type" = FIELD("Document Type");//, "Line No." = FIELD("Line No.");
             }
         }
         addafter(Status)
@@ -52,11 +52,6 @@ pageextension 60542 SalesOrderExtUS extends "Sales Order"
 
     var
         SalesLines: Record "Sales Line";
-
-    procedure UpdateFactbox(Value: Integer)
-    begin
-        // Rec
-    end;
 }
 
 // pageextension 50100 SalesOrderExt extends "Sales Order"

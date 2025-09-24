@@ -33,7 +33,15 @@ pageextension 60540 SalesOrderSubformLabelAddInExt extends "Sales Order Subform"
                         end;
                     end;
                 end;
+                Message('Updating amount!');
                 Rec.Modify();
+            end;
+        }
+        modify("Line No.")
+        {
+            trigger OnAfterValidate()
+            begin
+
             end;
         }
 

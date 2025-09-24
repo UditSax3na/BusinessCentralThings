@@ -9,7 +9,7 @@ page 60504 SalesLineFactbox
     {
         area(content)
         {
-            field("No."; Rec."No.")
+            field("No."; UpdateFactBox(Rec."Line No."))
             {
                 ApplicationArea = All;
                 Caption = 'Item No.';
@@ -25,22 +25,31 @@ page 60504 SalesLineFactbox
     }
     var
         LastPrice: Decimal;
-    // variable: ;
 
     trigger OnAfterGetCurrRecord()
-    var
-        SalesInvLine: Record "Sales Invoice Line";
     begin
-        Clear(LastPrice);
+        // Message('OnAfterGetRecord!');
+        // CurrPage.Update(false);
+    end;
 
+    procedure UpdateFactBox(LineNo: Integer): Code[20]
+    var
+        SalesInvLine: Record "Sales Line";
+    begin
+        // Rec.
         if (Rec."No." <> '') and (Rec."Sell-to Customer No." <> '') then begin
             SalesInvLine.Reset();
             SalesInvLine.SetRange("Sell-to Customer No.", Rec."Sell-to Customer No.");
-            SalesInvLine.SetRange("No.", Rec."No.");
-            if SalesInvLine.FindLast() then
+            SalesInvLine.SetRange("Line No.", LineNo);
+            if SalesInvLine.FindLast() then begin
                 LastPrice := SalesInvLine."Unit Price";
+                Rec.Modify();
+                CurrPage.Update(false);
+                exit(SalesInvLine."No.");
+            end;
         end;
-        Message('Record Updated!');
+        Rec.Modify();
         CurrPage.Update(false);
+        exit('');
     end;
 }
