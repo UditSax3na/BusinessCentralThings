@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-09-23T03:51:00.3306519Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-09-23T12:33:41.4058442Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -1416,7 +1416,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>GrandTotal: </Value>
+                                  <Style />
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Fields!GrandTotalAmt.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1642,7 +1646,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.AmountInWord(Sum(Fields!Line_Amount.Value))</Value>
+                                  <Value>=Code.AmountInWord(Sum(Fields!Line_Amount.Value) + Sum(Fields!LineCGSTAmt.Value) + Sum(Fields!LineSGSTAmt.Value) + Sum(Fields!LineIGSTAmt.Value) )</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>

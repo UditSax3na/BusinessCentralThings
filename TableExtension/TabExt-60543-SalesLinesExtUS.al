@@ -4,25 +4,28 @@ tableextension 60543 SalesLinesExtUS extends "Sales Line"
     {
         // modify("No.")
 
+
         field(60000; BarCode; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        modify("Unit Price")
+        field(60001; PreviousValue; Decimal)
         {
-            trigger OnAfterValidate()
-            // for the notification part
-            var
-                SalesHeader: Record "Sales Invoice Header";
-                SalesLines: Record "Sales Invoice Line";
-                Notificobj: Notification;
-            begin
-                SalesHeader.Reset();
-                SalesHeader.SetRange("Bill-to Customer No.", Rec."Bill-to Customer No.");
-                Message('We are here 1, %1', SalesHeader."No.");
-
-            end;
+            DataClassification = ToBeClassified;
         }
+        // modify("Unit Price")
+        // {
+        // trigger OnAfterValidate()
+        // // for the notification part
+        // var
+        //     SalesHeader: Record "Sales Invoice Header";
+        //     SalesLines: Record "Sales Invoice Line";
+        //     Notificobj: Notification;
+        // begin
+        //     SalesHeader.Reset();
+        //     SalesHeader.SetRange("Bill-to Customer No.", Rec."Bill-to Customer No.");
+        // end;
+        // }
     }
     // usercontrol(Toast; "ToastAddIn")
     //     {

@@ -8,10 +8,10 @@ pageextension 60502 CustomerExtListUS extends "Customer List"
         }
         addlast(Content)
         {
-            usercontrol(Toast; "ToastAddIn")
-            {
-                ApplicationArea = All;
-            }
+            // usercontrol(Toast; "ToastAddIn")
+            // {
+            //     ApplicationArea = All;
+            // }
         }
     }
 
@@ -26,7 +26,7 @@ pageextension 60502 CustomerExtListUS extends "Customer List"
                 trigger OnAction()
                 begin
                     // Params: Title, Message, Type, Position ("left"/"right")
-                    CurrPage.Toast.ShowToast('Success!', 'Customer created successfully.', 'success', 'right');
+                    // CurrPage.Toast.ShowToast('Success!', 'Customer created successfully.', 'success', 'right');
                 end;
             }
         }

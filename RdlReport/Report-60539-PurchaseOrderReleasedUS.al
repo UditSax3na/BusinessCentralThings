@@ -45,49 +45,54 @@ report 60539 PurchaseOrderReleasedUS
                 column(LineSGSTAmt; SGSTAmt) { }
                 column(LineIGSTAmt; IGSTAmt) { }
                 column(LineTotalAmt; LineTotalAmt) { }
-                trigger OnAfterGetRecord()
-                begin
-                    // Reset per line
-                    Clear(CGSTAmt);
-                    Clear(SGSTAmt);
-                    Clear(IGSTAmt);
-                    Clear(LineTotalAmt);
-
-                    TaxTransactionValue.Reset();
-                    TaxTransactionValue.SetRange("Tax Record ID", "Purchase Line".RecordId);
-                    TaxTransactionValue.SetRange("Tax Type", 'GST');
-                    TaxTransactionValue.SetRange("Value Type", TaxTransactionValue."Value Type"::COMPONENT);
-                    TaxTransactionValue.SetFilter(Percent, '<>%1', 0);
-
-                    if TaxTransactionValue.FindSet() then begin
-                        Message('CGST: %1, SGST: %2, IGST: %3, LineTotalAmt: %4, GrandTotalAmt: %5', CGSTAmt, SGSTAmt, IGSTAmt, LineTotalAmt, GrandTotalAmt);
-                        repeat
-                            case TaxTransactionValue."Value ID" of
-                                2:
-                                    begin
-                                        CGSTAmt := Round(TaxTransactionValue.Amount, 0.01);
-                                        TotalCgstAmt += CGSTAmt;
-                                    end;
-                                3:
-                                    begin
-                                        IGSTAmt := Round(TaxTransactionValue.Amount, 0.01);
-                                        TotalIgstAmt += IGSTAmt;
-                                    end;
-
-                                6:
-                                    begin
-                                        SGSTAmt := Round(TaxTransactionValue.Amount, 0.01);
-                                        TotalSgstAmt += SGSTAmt;
-                                    end;
-                            end;
-                        until TaxTransactionValue.Next() = 0;
-                    end;
-                    LineTotalAmt := CGSTAmt + SGSTAmt + IGSTAmt;
-                    GrandTotalAmt += LineTotalAmt;
-                    Message('CGST: %1, SGST: %2, IGST: %3, LineTotalAmt: %4, GrandTotalAmt: %5', CGSTAmt, SGSTAmt, IGSTAmt, LineTotalAmt, GrandTotalAmt);
-                end;
 
             }
+            trigger OnAfterGetRecord()
+            var
+                purchLine: Record "Purchase Line";
+            begin
+                // Reset per line
+                // Clear(CGSTAmt);
+                // Clear(SGSTAmt);
+                // Clear(IGSTAmt);
+                // Clear(LineTotalAmt);
+                // if purchLined
+                // purchLine.SetRange();
+
+                TaxTransactionValue.Reset();
+                TaxTransactionValue.SetRange("Tax Record ID", "Purchase Line".RecordId);
+                TaxTransactionValue.SetRange("Tax Type", 'GST');
+                TaxTransactionValue.SetRange("Value Type", TaxTransactionValue."Value Type"::COMPONENT);
+                TaxTransactionValue.SetFilter(Percent, '<>%1', 0);
+
+                if TaxTransactionValue.FindSet() then begin
+                    Message('CGST: %1, SGST: %2, IGST: %3, LineTotalAmt: %4, GrandTotalAmt: %5', CGSTAmt, SGSTAmt, IGSTAmt, LineTotalAmt, GrandTotalAmt);
+                    repeat
+                        case TaxTransactionValue."Value ID" of
+                            2:
+                                begin
+                                    CGSTAmt := Round(TaxTransactionValue.Amount, 0.01);
+                                    TotalCgstAmt += CGSTAmt;
+                                end;
+                            3:
+                                begin
+                                    IGSTAmt := Round(TaxTransactionValue.Amount, 0.01);
+                                    TotalIgstAmt += IGSTAmt;
+                                end;
+
+                            6:
+                                begin
+                                    SGSTAmt := Round(TaxTransactionValue.Amount, 0.01);
+                                    TotalSgstAmt += SGSTAmt;
+                                end;
+                        end;
+                        LineTotalAmt += CGSTAmt + SGSTAmt + IGSTAmt + "Purchase Line"."Line Amount";
+                    until TaxTransactionValue.Next() = 0;
+                    GrandTotalAmt += LineTotalAmt; // + "Purchase Line"."Line Amount"
+                end;
+                Message('CGST: %1, SGST: %2, IGST: %3, LineTotalAmt: %4, GrandTotalAmt: %5', CGSTAmt, SGSTAmt, IGSTAmt, LineTotalAmt, GrandTotalAmt);
+            end;
+
             trigger OnPreDataItem()
             begin
                 // Reset totals per document

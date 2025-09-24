@@ -1,0 +1,30 @@
+*{
+    padding:0;
+    margin:0;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+.bc-lineslabel-root {
+    pointer-events: none; /* don't block clicks on the grid header */
+    z-index: 9999;
+    transform: translateY(-34px); /* lift above the subform header row */
+}
+
+.bc-lineslabel {
+    display: inline-block;
+    pointer-events: auto; /* allow tooltip hover if needed */
+    background: #0ea5e9; /* info blue */
+    color: #ffffff;
+    font: 12px/1.2 Segoe UI, system-ui, -apple-system, Roboto, Arial, sans-serif;
+    padding: 4px 8px;
+    border-radius: 4px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    white-space: nowrap;
+}
+
+.bc-lineslabel.is-hidden {
+    display: none;
+}

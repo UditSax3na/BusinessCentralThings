@@ -2,6 +2,14 @@ pageextension 60542 SalesOrderExtUS extends "Sales Order"
 {
     layout
     {
+        addfirst(factboxes)
+        {
+            part(SalesLineFactbox; SalesLineFactbox)
+            {
+                ApplicationArea = All;
+                SubPageLink = "Document No." = FIELD("No."), "Document Type" = FIELD("Document Type");//,"Line No." = FIELD("Line No.");
+            }
+        }
         addafter(Status)
         {
             field("Sources of Sales"; Rec."Sources of Sales")
@@ -43,5 +51,34 @@ pageextension 60542 SalesOrderExtUS extends "Sales Order"
     // }
 
     var
-        myInt: Integer;
+        SalesLines: Record "Sales Line";
+
+    procedure UpdateFactbox(Value: Integer)
+    begin
+        // Rec
+    end;
 }
+
+// pageextension 50100 SalesOrderExt extends "Sales Order"
+// {
+//     layout
+//     {
+//         addlast(Content)
+//         {
+//             control(ToastControl, "ToastNotificationAddIn")
+//             {
+//                 ApplicationArea = All;
+//             }
+//         }
+//     }
+
+//     var
+//         ToastControl: "ToastNotificationAddIn";
+
+//     trigger OnAfterGetRecord();
+//     begin
+//         // Example: show toast when a line is selected
+//         if "Sales Lines".Rec."No." <> '' then
+//             ToastControl.Invoke('ShowToastFromAL', 'Item selected: ' + "Sales Lines".Rec.Description);
+//     end;
+// }

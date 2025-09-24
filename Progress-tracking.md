@@ -88,9 +88,17 @@
 ---
 ### date - 22 Sept 25
 - Building a custom report for purchase order.
-- 
+- And Continuing the Notification part.
 ---
 
+### date - 23 sept 25
+- Still figuring out the Notification part.
+- Created Custom report.
+
+---
+### date - 24 sept 25
+- finding new approach to figuring out the notification part.
+- 
 
 
 
