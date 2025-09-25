@@ -7,7 +7,8 @@ pageextension 60542 SalesOrderExtUS extends "Sales Order"
             part(SalesLineFactbox; SalesLineFactbox)
             {
                 ApplicationArea = All;
-                SubPageLink = "Document No." = FIELD("No."), "Document Type" = FIELD("Document Type");//, "Line No." = FIELD("Line No.");
+                Provider = SalesLines; // that will tell the factbox that this will send the data also this line will also enable the Fields which are not present in the sales order
+                SubPageLink = "Document No." = FIELD("Document No."), "Document Type" = FIELD("Document Type"), "Line No." = FIELD("Line No.");
             }
         }
         addafter(Status)
@@ -41,39 +42,11 @@ pageextension 60542 SalesOrderExtUS extends "Sales Order"
             var
                 NoSeries: Record "No. Series";
             begin
-                // Message('Before Action!');
             end;
         }
-        // addafter(Post)
-        // {
 
     }
-    // }
 
     var
         SalesLines: Record "Sales Line";
 }
-
-// pageextension 50100 SalesOrderExt extends "Sales Order"
-// {
-//     layout
-//     {
-//         addlast(Content)
-//         {
-//             control(ToastControl, "ToastNotificationAddIn")
-//             {
-//                 ApplicationArea = All;
-//             }
-//         }
-//     }
-
-//     var
-//         ToastControl: "ToastNotificationAddIn";
-
-//     trigger OnAfterGetRecord();
-//     begin
-//         // Example: show toast when a line is selected
-//         if "Sales Lines".Rec."No." <> '' then
-//             ToastControl.Invoke('ShowToastFromAL', 'Item selected: ' + "Sales Lines".Rec.Description);
-//     end;
-// }

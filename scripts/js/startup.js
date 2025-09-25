@@ -1,4 +1,10 @@
-// scripts/js/global-startup.js
-(function () {
-    if (!window.BCGlobalBanner) window.BCGlobalBanner = {};
-})();
+// Code to be displayed
+// $.({
+//      url: url,
+//      xhrFields: {
+//           withCredentials: true
+//     }
+// }).done(function() {
+
+//     $("#controlAddIn").text("this is the world");
+// });

@@ -47,6 +47,11 @@ page 60502 IndentLineUS
                 {
                     Caption = 'Unit Price';
                     ApplicationArea = all;
+                    // trigger OnValidate()
+                    // begin
+
+                    //     CurrPage.PopupArea.showPopup();
+                    // end;
                 }
                 field("Vendor No 1"; Rec."Vendor No 1")
                 {
@@ -82,4 +87,5 @@ page 60502 IndentLineUS
             }
         }
     }
+    var
 }

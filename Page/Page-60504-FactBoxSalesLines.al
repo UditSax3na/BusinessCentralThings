@@ -1,15 +1,16 @@
 page 60504 SalesLineFactbox
 {
-    PageType = CardPart;
+    PageType = ListPart;
     SourceTable = "Sales Line";
     ApplicationArea = All;
     Caption = 'Line Details';
+    RefreshOnActivate = true;
 
     layout
     {
         area(content)
         {
-            field("No."; UpdateFactBox(Rec."Line No."))
+            field("No."; Rec."No.")
             {
                 ApplicationArea = All;
                 Caption = 'Item No.';
@@ -28,15 +29,13 @@ page 60504 SalesLineFactbox
 
     trigger OnAfterGetCurrRecord()
     begin
-        // Message('OnAfterGetRecord!');
-        // CurrPage.Update(false);
+        UpdateFactBox(rec."Line No.");
     end;
 
     procedure UpdateFactBox(LineNo: Integer): Code[20]
     var
-        SalesInvLine: Record "Sales Line";
+        SalesInvLine: Record "Sales Invoice Line";
     begin
-        // Rec.
         if (Rec."No." <> '') and (Rec."Sell-to Customer No." <> '') then begin
             SalesInvLine.Reset();
             SalesInvLine.SetRange("Sell-to Customer No.", Rec."Sell-to Customer No.");

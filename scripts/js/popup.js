@@ -1,10 +1,10 @@
-var MyCustomControl = (function () {
-    return {
-        init: function (element, events) {
-            element.innerHTML = "<div id='msgBox'>Ready</div>";
-        },
-        ShowMessage: function (msg) {
-            document.getElementById("msgBox").innerText = msg; // 
-        }
-    };
-})();
+function showPopup(msg) {
+    let container = $("<div>")
+        .addClass("popup-container")
+        .text(msg);
+    $("body").append(container);
+    setTimeout(function() {
+        container.remove();
+        Microsoft.Dynamics.NAV.InvokeExtensibilityMethod('popUpClosed');
+    }, 10000);
+};

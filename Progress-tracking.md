@@ -1,4 +1,4 @@
-# Progress Tracking
+# Progress Tracking log
 ## Tasks
 ### date:- 5 Sept 25
 - Create Indent table 
@@ -100,9 +100,24 @@
 - finding new approach to figuring out the notification part.
 - selecting the new approach over the bell one.
 - created a factbox for the sales order.
-- 
 
 ---
+### date - 25 sept 25
+- able to create new control addins.
+- able to create a custom popup/toast.
+- solved the issue on the factbox value changes with selected lines.
+- used jquery to create add the popup to the page.
+
+---
+### date - 26 sept 25
+
+---
+### date - 27 sept 25
+
+---
+### date - 29 sept 25
+
+
 
 
 

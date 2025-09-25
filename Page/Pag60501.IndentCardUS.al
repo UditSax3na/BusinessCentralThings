@@ -242,32 +242,8 @@ page 60501 IndentCardUS
                     end;
                 end;
             }
-            // action("Post")
-            // {
-            //     Image = Post;
-            //     Promoted = true;
-            //     PromotedCategory = Process;
-            //     ApplicationArea = all;
-
-            //     trigger OnAction()
-            //     var
-            //         PurchaseOrder: Record "Purchase Header";
-            //         PurchaseLines: Record "Purchase Line";
-            //         IndentLines: Record IndentLineUS;
-            //     begin
-            //         IndentLines.Reset();
-            //         IndentLines.SetRange("Document No", Rec.No);
-            //         if IndentLines.FindSet() then begin
-            //             PurchaseOrder.Init();
-            //             PurchaseLines.Init();
-
-            //         end;
-
-            //     end;
-            // }
         }
     }
-
     procedure GetLastNo(purcHdr: Record "Purchase Header"): Integer
     var
         PurchLine: Record "Purchase Line";
@@ -283,7 +259,4 @@ page 60501 IndentCardUS
 
         exit(LineNo);
     end;
-
-    var
-        myInt: Integer;
 }

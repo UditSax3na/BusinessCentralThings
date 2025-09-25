@@ -2,6 +2,21 @@ pageextension 60540 SalesOrderSubformLabelAddInExt extends "Sales Order Subform"
 {
     layout
     {
+        addfirst(content)
+        {
+            usercontrol(PopupArea; SampleAddin)
+            {
+                ApplicationArea = All;
+                Visible = FlagBoolean;
+                trigger popUpClosed()
+                begin
+                    Message('This is the flag boolean: %1', FlagBoolean);
+                    FlagBoolean := FlagBoolean ? false : true;
+                    CurrPage.Update(); // i think there is no need be update the record
+                    Message('This is the flag boolean: %1', FlagBoolean);
+                end;
+            }
+        }
         addafter(Description)
         {
             field(PreviousValue; Rec.PreviousValue)
@@ -17,8 +32,9 @@ pageextension 60540 SalesOrderSubformLabelAddInExt extends "Sales Order Subform"
             var
                 PostedSales: Record "Sales Invoice Header";
                 PostedSalesLines: Record "Sales Invoice Line";
-                Response: Boolean;
             begin
+                FlagBoolean := FlagBoolean ? false : true;
+                CurrPage.Update(false);
                 PostedSales.Reset();
                 PostedSalesLines.Reset();
                 PostedSales.SetRange("Bill-to Customer No.", Rec."Bill-to Customer No.");
@@ -26,28 +42,32 @@ pageextension 60540 SalesOrderSubformLabelAddInExt extends "Sales Order Subform"
                     PostedSalesLines.SetRange("No.", Rec."No.");
                     if PostedSalesLines.FindLast() then begin
                         Rec.PreviousValue := PostedSalesLines."Unit Price";
-                        Response := Confirm(StrSubstNo('Previous Amount: %1', PostedSalesLines."Unit Price"), false);
-                        case Response of
-                            true:
-                                Rec."Unit Price" := PostedSalesLines."Unit Price"
-                        end;
+                        CurrPage.PopupArea.showPopup(StrSubstNo('Previous Amount %1', Rec.PreviousValue));
                     end;
                 end;
-                Message('Updating amount!');
                 Rec.Modify();
+                CurrPage.Update(false); // i think there is no need be update the record
             end;
         }
-        modify("Line No.")
-        {
-            trigger OnAfterValidate()
-            begin
-
-            end;
-        }
-
     }
     actions
     {
-
+        addafter("&Line")
+        {
+            // action(ToggleButton)
+            // {
+            //     Caption = 'Show/Hide Control Panel';
+            //     ApplicationArea = all;
+            //     trigger OnAction()
+            //     begin
+            //         Message('This is the flag boolean: %1', FlagBoolean);
+            //         FlagBoolean := FlagBoolean ? false : true;
+            //         CurrPage.Update(); // i think there is no need be update the record
+            //         Message('This is the flag boolean: %1', FlagBoolean);
+            //     end;
+            // }
+        }
     }
+    var
+        FlagBoolean: Boolean;
 }

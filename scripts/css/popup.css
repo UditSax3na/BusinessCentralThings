@@ -6,25 +6,34 @@ html, body{
     height: 100%;
     width: 100%;
 }
-
-.bc-lineslabel-root {
-    pointer-events: none; /* don't block clicks on the grid header */
-    z-index: 9999;
-    transform: translateY(-34px); /* lift above the subform header row */
+/* popup.css */
+iframe{
+    position: absolute;
+    width: 96% !important;
+    z-index: 1;
+}
+.control-addin-container{
+    height: 4rem !important;
+}
+#controlAddIn{
+    width: 0px !important;
+    height: 0px !important;
 }
 
-.bc-lineslabel {
-    display: inline-block;
-    pointer-events: auto; /* allow tooltip hover if needed */
-    background: #0ea5e9; /* info blue */
+.popup-container {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
     color: #ffffff;
-    font: 12px/1.2 Segoe UI, system-ui, -apple-system, Roboto, Arial, sans-serif;
-    padding: 4px 8px;
-    border-radius: 4px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-    white-space: nowrap;
-}
-
-.bc-lineslabel.is-hidden {
-    display: none;
+    background-color: #0078d7;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 96%;
+    /* height: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
